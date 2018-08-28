@@ -1,9 +1,0 @@
-#!/usr/bin/env ruby
-
-require "./lib/mountains"
-   
-Mountains::CLI.new.call
-
-
-#for your bin file you need to load your interpreter (Ruby)
-#then you need to load your envs (lib)
