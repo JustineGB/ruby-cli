@@ -1,0 +1,2 @@
+class ColoradoFourteeners::Scraper
+end

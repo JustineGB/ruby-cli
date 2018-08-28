@@ -1,5 +1,7 @@
-require_relative "./mountains/version"
-require_relative "./mountains/cli"
+require_relative "./colorado-fourteeners/version"
+require_relative "./colorado-fourteeners/cli"
+require_relative "./colorado-fourteeners/scraper"
+require_relative "./colorado-fourteeners/mountain"
 require 'open-uri'
 require 'pry'
 require 'nokogiri'
