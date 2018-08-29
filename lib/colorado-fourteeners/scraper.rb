@@ -1,9 +1,9 @@
-require 'open-uri'
-require 'nokogiri'
+#require 'open-uri'
+#require 'nokogiri'
 
- class Scraper
+ class ColoradoFourteeners::Scraper
    def get_page
-    Nokogiri::HTML(open("https://www.14ers.com/photos/photos_14ers1.php"))
+    #Nokogiri::HTML(open("https://www.14ers.com/photos/photos_14ers1.php"))
     end
     
   def scrape_mountain_list 
@@ -13,6 +13,6 @@ require 'nokogiri'
 
 end
 
-s = Scraper.new
-s.scrape_mountain_list
+#s = Scraper.new
+#s.scrape_mountain_list
 
