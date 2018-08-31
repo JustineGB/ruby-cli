@@ -1,20 +1,23 @@
 class ColoradoFourteeners::Mountain
-  attr_accessor :name, :elevation, :range
+  attr_accessor :name, :standard_route, :elevation_gain, :distance
 
   @@all = []
 
- def initialize(name=nil, number=nil) #number of mtn in the list
+ def initialize
     @name = name
-    @number = number
-    @all << self
+    @standard_route = standard_route
+    @elevation_gain = elevation_gain
+    @distance = distance
+  #  @all << self
   end
 
   def self.all #show list of self (mtn objects)
    @@all
   end
 
-  def self.new_from_list(input) #argument of either the mtn name or the mtn number on the list
-    self.new #(scrape the mtn from the given argument)
+  def self.new_from_list_page(m)
+    #self.new #(scrape the mtn from the given argument)
+    #just return the name and the number 
   end
 
   def elevation
@@ -26,3 +29,6 @@ class ColoradoFourteeners::Mountain
   end
 
 end
+
+
+m = ColoradoFourteeners::Mountain.new
