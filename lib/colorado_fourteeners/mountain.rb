@@ -1,34 +1,43 @@
 class ColoradoFourteeners::Mountain
-  attr_accessor :name, :standard_route, :elevation_gain, :distance
-
+  attr_accessor :name, :standard_route, :elevation_gain, :distance, :klass_difficulty
   @@all = []
 
- def initialize
+  def initialize(name=nil) #instance method. hook. operates on 1 individial instance of the class
     @name = name
-    @standard_route = standard_route
-    @elevation_gain = elevation_gain
-    @distance = distance
   #  @all << self
   end
 
-  def self.all #show list of self (mtn objects)
-   @@all
+  def self.all #class method, class getter (operates on all of the class instances/all of the class objects)
+    @@all
   end
 
-  def self.new_from_list_page(m)
-    #self.new #(scrape the mtn from the given argument)
-    #just return the name and the number 
+  def self.new_from_page(m) #constructor. CLASS METHOD. #initialize with name only
+#self.new(
+#      m.at_css("figcaption h3").text
+#    )
   end
 
-  def elevation
+  def standard_route #instance method
+    #self.get_page.css('br')[0].next.text.strip,
+#    @standard_route ==
+  end
+
+  def elevation_gain
+    #self.get_page.css('br')[1].next.text.strip,
   #  @elevation ||= doc.css("div...").text or value?
   end
 
-  def range
-    #  @range ||= doc.css("div...").text or value?
+  def distance
+    #self.get_page.css('br')[2].next.text.strip
+    #  @distance ||= doc.css("div...").text or value?
+  end
+
+  def klass_difficulty
+    #self.get_page.css('br')[3].next.text.strip
   end
 
 end
 
-
-m = ColoradoFourteeners::Mountain.new
+ColoradoFourteeners::Mountain.new
+m = "https://www.outtherecolorado.com/gallery/colorados-14ers-ranked-by-difficulty/"
+ColoradoFourteeners::Mountain.new.new_from_index_page(m)
