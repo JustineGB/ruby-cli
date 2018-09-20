@@ -4,17 +4,23 @@ class ColoradoHikes::Hike
 
   @@all = []
 
-  def self.new_from_page(h)
-     self.new(
-       h.css("span.cat-ttl").first.text
-      #   h.css("div.item-title h3").text,
-      #   h.css("div.item-title a").attribute("href").text
-       )
-  end
+  #  def create_hikes
+  #    scrape_hikes.each do |h|
+  #      ColoradoHikes::Hike.new_from_page(h)
+  #    end
 
-  def initialize(name=nil) #, url=nil)  #instance method. hook. operates on 1 individial instance of the class
+  #def self.new_from_selection(h) #new from the region that is selected.
+  #  self.new(
+        #"http://thecohiker.com/loc#{}"
+        #h.css("div.item-title h3").text,
+        #h.css("div.item-title a").attribute("href").text
+  #     )
+  #end
+
+
+  def initialize(name=nil, url=nil)  #instance method. hook. operates on 1 individial instance of the class
     @name = name
-  #  @url = url
+    @url = url
     @@all << self
   end
 

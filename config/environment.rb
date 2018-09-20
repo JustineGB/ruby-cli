@@ -6,7 +6,7 @@ require_relative '../lib/colorado_hikes/scraper'
 require_relative '../lib/colorado_hikes/hike'
 require_relative '../lib/colorado_hikes/cli'
 require_relative '../lib/colorado_hikes/version'
-require_relative '../lib/colorado_hikes/regons'
+require_relative '../lib/colorado_hikes/regions'
 
 
 
