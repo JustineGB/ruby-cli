@@ -1,10 +1,5 @@
-Hello World!
-
-# Ruby::Cli
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ruby/cli`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+### Best Colorado Hikes
+Welcome to this Best Colorado Hikes Ruby Gem. This Gem will provide a list of the top Colorado hikes and each hike's description. The list is pulled from The Colorado Hiker (thcohiker.com). 
 
 ## Installation
 
@@ -24,7 +19,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Type the code below and follow on screen prompts.
+
+  $ colorado-hikes
 
 ## Development
 

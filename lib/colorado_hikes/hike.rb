@@ -1,30 +1,29 @@
 class ColoradoHikes::Hike
 
-  attr_accessor :name, :url, :trailhead, :distance, :activities, :closest_city
+  attr_accessor :name, :url, :trailhead, :activities, :closest_city, :distance
 
   @@all = []
 
   def self.new_from_page(h)
      self.new(
-      h.css("div.item-title h3").text,
-      #"https://www.theworlds50best.com#{h.css("div.item-title a").attribute("href").text}"
-      h.css("div.item-title a").attribute("href").text
-      #h.css("div.item-text p").text
-     )
+       h.css("span.cat-ttl").first.text
+      #   h.css("div.item-title h3").text,
+      #   h.css("div.item-title a").attribute("href").text
+       )
   end
 
-  def initialize(name=nil, url=nil)  #instance method. hook. operates on 1 individial instance of the class
+  def initialize(name=nil) #, url=nil)  #instance method. hook. operates on 1 individial instance of the class
     @name = name
-    @url = url
+  #  @url = url
     @@all << self
   end
 
   def self.all #class method, class getter (operates on all of the class instances/all of the class objects)
-    @@all
+    @@all #class var. scope class and instances.
   end
 
   def self.find(id) #when called from the CLI this method will return the hike name that correspondes to the user input (minus 1 to match the index)
-     self.all[id-1]
+    self.all[id-1]
    end
 
   def doc #create this method so that you don't have to def local doc varaibale in each of the following methods #scraping methods that make sense to have in the Hike Class bc they are creating individual hike attirbutes
@@ -32,7 +31,7 @@ class ColoradoHikes::Hike
   end
 
   def trailhead
-    @trailhead ||=  doc.css("div.entry-content p[1]").text
+    @trailhead ||=  doc.css("div.full-description").text
   end
 
   def activities
