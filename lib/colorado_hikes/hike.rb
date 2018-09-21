@@ -1,22 +1,6 @@
 class ColoradoHikes::Hike
-
-  attr_accessor :name, :url, :trailhead, :activities, :closest_city, :distance
-
+  attr_accessor :name, :url
   @@all = []
-
-  #  def create_hikes
-  #    scrape_hikes.each do |h|
-  #      ColoradoHikes::Hike.new_from_page(h)
-  #    end
-
-  #def self.new_from_selection(h) #new from the region that is selected.
-  #  self.new(
-        #"http://thecohiker.com/loc#{}"
-        #h.css("div.item-title h3").text,
-        #h.css("div.item-title a").attribute("href").text
-  #     )
-  #end
-
 
   def initialize(name=nil, url=nil)  #instance method. hook. operates on 1 individial instance of the class
     @name = name
@@ -36,20 +20,20 @@ class ColoradoHikes::Hike
     @doc ||= Nokogiri::HTML(open(self.url))
   end
 
-  def trailhead
-    @trailhead ||=  doc.css("div.full-description").text
+  def hike_info1
+    @hike_info1 ||= doc.css("div.entry-content p").first.text
   end
 
-  def activities
-    @activities ||= doc.css("div.entry-content p[2]").text
+  def hike_info2
+    @hike_info2 ||= doc.css("div.entry-content p[2]").text
   end
 
-  def closest_city
-    @closest_city ||= doc.css("div.entry-content p[3]").text
+  def hike_info3
+    @hike_info3 ||= doc.css("div.entry-content p[3]").text
   end
 
-  def distance
-    @distance ||= doc.css("div.entry-content p[6]").text
+  def hike_info4
+    @hike_info4 ||= doc.css("div.entry-content p[6]").text
   end
 
 end

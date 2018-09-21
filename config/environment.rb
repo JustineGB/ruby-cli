@@ -1,6 +1,7 @@
 require 'pry'
 require 'nokogiri'
 require 'open-uri'
+require 'colorize'
 
 require_relative '../lib/colorado_hikes/scraper'
 require_relative '../lib/colorado_hikes/hike'
