@@ -22,16 +22,16 @@ class ColoradoHikes::Regions
     self.all[id-1]
   end
 
-  def hikes  #Move this method to the hike class?
-     doc ||= Nokogiri::HTML(open(self.url))
-     @hikes = []
-     doc.css("div.item-title").collect do |name|
-       hike = ColoradoHikes::Hike.new
-       hike.url = name.css("a").attribute("href").value
-       hike.name = name.css("h3").text
-      @hikes << hike
-     end
-    @hikes
-   end
+#  def hikes  #Move this method to the hike class?
+#     doc ||= Nokogiri::HTML(open(self.url))
+#     @hikes = []
+#     doc.css("div.item-title").collect do |name|
+#       hike = ColoradoHikes::Hike.new
+#       hike.url = name.css("a").attribute("href").value
+#       hike.name = name.css("h3").text
+#      @hikes << hike
+#     end
+#    @hikes
+#   end
 
 end

@@ -11,4 +11,4 @@ require "colorado_hikes"
 # Pry.start
 
 require "irb"
-IRB.start #(__FILE__)
+IRB.start #(./bin/colorado-hikes)

@@ -1,15 +1,33 @@
 class ColoradoHikes::Hike
   attr_accessor :name, :url
-  @@all = []
+  @@all = [] #array is re-set each time a new region is called...
 
-  def initialize(name=nil, url=nil)  #instance method. hook. operates on 1 individial instance of the class
-    @name = name
-    @url = url
-    @@all << self
+  #def initialize(name=nil, url=nil)  #add in region here? to org into regional catergoies?? #instance method. hook. operates on 1 individial instance of the class
+  #  @name = name
+  #  @url = url
+  #  @@all << self
+#  end
+
+
+  def initialize(hike_hash)  #add in region here? to org into regional catergoies?? #instance method. hook. operates on 1 individial instance of the class
+    hike_hash.each do |k,v|
+      self.send("#{k}=", v)
+      end
+      save
   end
 
-  def self.all #class method, class getter (operates on all of the class instances/all of the class objects)
-    @@all #class var. scope class and instances.
+  def self.make_hikes(scraped_page)
+    scraped_page.each do |hike_hash|
+      Hike.new(hike_hash)
+    end
+  end 
+
+  def self.all #Class Method, Class getter (operates on all of the class instances/all of the class objects). Allows you to 'get' all of the objects stored in @@all
+    @@all #Class variable (scope is both class & instances).
+  end
+
+  def save
+    @@all << self
   end
 
   def self.find(id) #when called from the CLI this method will return the hike name that correspondes to the user input (minus 1 to match the index)

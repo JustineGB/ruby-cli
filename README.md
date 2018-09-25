@@ -1,19 +1,7 @@
 ### Best Colorado Hikes
-Welcome to this Best Colorado Hikes Ruby Gem. This Gem will provide a list of the top Colorado hikes and each hike's description. The list is pulled from The Colorado Hiker (thcohiker.com). 
+Welcome to this Best Colorado Hikes Ruby Gem. This Gem will provide a list of the top Colorado hikes (by region) and each hike's description. The list is pulled from The Colorado Hiker (thcohiker.com).
 
 ## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'ruby-cli'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
 
     $ gem install ruby-cli
 
@@ -22,6 +10,8 @@ Or install it yourself as:
 Type the code below and follow on screen prompts.
 
   $ colorado-hikes
+
+First, you will select the region for which you would like to see hikes on and then you will select the hike.
 
 ## Development
 
