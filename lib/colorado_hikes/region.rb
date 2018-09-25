@@ -22,7 +22,7 @@ class ColoradoHikes::Region
     self.all[id-1]
   end
 
-  def hikes  #Move this method to the hike class?
+  def hikes
     doc ||= Nokogiri::HTML(open(self.url))
     @hikes = []
     doc.css("div.item-title").each do |h|

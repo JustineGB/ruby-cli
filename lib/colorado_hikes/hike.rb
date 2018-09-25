@@ -1,27 +1,12 @@
 class ColoradoHikes::Hike
   attr_accessor :name, :url
-  @@all = [] #array is re-set each time a new region is called...
+  @@all = []
 
-  def initialize(name=nil, url=nil)  #add in region here? to org into regional catergoies?? #instance method. hook. operates on 1 individial instance of the class
+  def initialize(name=nil, url=nil) #add in region here? to org into regional catergoies?? #instance method. hook. operates on 1 individial instance of the class
     @name = name
     @url = url
     @@all << self
   end
-
-
-  #def initialize(hike_hash)  #add in region here? to org into regional catergoies?? #instance method. hook. operates on 1 individial instance of the class
-  #  hike_hash.each do |k,v|
-  #    self.send("#{k}=", v)
-  #    end
-  #    save
-#  end
-
-  #def self.new_from_page(hikes)
-  #  self.new(
-  #    hikes.css("a").attribute("href").value,
-  #    hikes.css("h3").text
-  #  )
-  #end
 
   def self.all #Class Method, Class getter (operates on all of the class instances/all of the class objects). Allows you to 'get' all of the objects stored in @@all
     @@all #Class variable (scope is both class & instances).

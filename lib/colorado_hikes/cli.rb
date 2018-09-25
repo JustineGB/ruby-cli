@@ -5,14 +5,16 @@ class ColoradoHikes::CLI
     puts ""
     puts "WELCOME TO THE BEST HIKES IN COLORADO!".blue
     puts "The hikes are organized into the following 6 regions.".blue
-    select_region
+   select_region
   end
 
   def select_region
     print_regions
     puts ""
     puts "Please select a region. Enter 1-6:".blue
+
     input = gets.strip.to_i
+
     if input.between?(1,6) == true
       selected_region = ColoradoHikes::Region.find(input)
       print_region(selected_region)
@@ -26,7 +28,9 @@ class ColoradoHikes::CLI
   def select_hike
     puts ""
     puts "Please select the hike you would like information on:".blue
+
     input = gets.strip.to_i
+
     if input.between?(1,12) == true
       hike = ColoradoHikes::Hike.find(input)
       print_hike_info(hike)
@@ -40,7 +44,9 @@ class ColoradoHikes::CLI
   def another_hike?
     puts ""
     puts "Would you like to see information on another hike? Please enter Y or N.".blue
+
     input = gets.strip.downcase
+
     if input == "y"
     ColoradoHikes::Hike.all.clear #clears the other hikes that are listed from other regions (only list the selected regions' hikes)
       select_region
@@ -62,8 +68,7 @@ class ColoradoHikes::CLI
     print_hikes(selected_region) #pass in the selected region
   end
 
-def print_hikes(selected_region) #need to call HIKES class. And there, need to create a method that searches through all of the hikes (must be created and scraped first though!)
-    #and then search through all of them and puts out just the ones that match that region
+  def print_hikes(selected_region)
     selected_region.hikes.each.with_index(1) do |h, i|
       puts "#{i}: #{h.name}".yellow
     end
@@ -76,5 +81,6 @@ def print_hikes(selected_region) #need to call HIKES class. And there, need to c
     puts "#{hike.hike_info2}".yellow
     puts "#{hike.hike_info3}".yellow
     puts "#{hike.hike_info4}".yellow
- end
+  end
+
 end
