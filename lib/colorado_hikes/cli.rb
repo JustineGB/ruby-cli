@@ -1,11 +1,10 @@
 class ColoradoHikes::CLI
 
   def call
+    ColoradoHikes::Scraper.create_regions
     puts ""
     puts "WELCOME TO THE BEST HIKES IN COLORADO!".blue
     puts "The hikes are organized into the following 6 regions.".blue
-    ColoradoHikes::Scraper.create_regions
-    ColoradoHikes::Scraper.scrape_hikes
     select_region
   end
 
@@ -15,7 +14,7 @@ class ColoradoHikes::CLI
     puts "Please select a region. Enter 1-6:".blue
     input = gets.strip.to_i
     if input.between?(1,6) == true
-      selected_region = ColoradoHikes::Regions.find(input)
+      selected_region = ColoradoHikes::Region.find(input)
       print_region(selected_region)
       select_hike
     else
@@ -52,7 +51,7 @@ class ColoradoHikes::CLI
   end
 
   def print_regions
-    ColoradoHikes::Regions.all.each.with_index(1) do |region, index|
+    ColoradoHikes::Region.all.each.with_index(1) do |region, index|
       puts "#{index}: #{region.name}".red
     end
   end
@@ -60,23 +59,22 @@ class ColoradoHikes::CLI
   def print_region(selected_region)
     puts ""
     puts "#{selected_region.name}".red
-  #  print_hikes(selected_region) #pass in the selected region
+    print_hikes(selected_region) #pass in the selected region
   end
 
-#  def print_hikes(selected_region)
-    #need to call HIKES class. And there, need to create a method that searches through all of the hikes (must be created and scraped first though!)
+def print_hikes(selected_region) #need to call HIKES class. And there, need to create a method that searches through all of the hikes (must be created and scraped first though!)
     #and then search through all of them and puts out just the ones that match that region
-    #selected_region.hikes.each.with_index(1) do |h, i|
-    #  puts "#{i}: #{h.name}".yellow
-  #  end
-#  end
+    selected_region.hikes.each.with_index(1) do |h, i|
+      puts "#{i}: #{h.name}".yellow
+    end
+  end
 
   def print_hike_info(hike)
     puts ""
-  #  puts "Great Selection! ".blue + "#{hike.name}".yellow + " is an awesome hike! Here is the info:".blue
-#    puts "#{hike.hike_info1}".yellow
-  #  puts "#{hike.hike_info2}".yellow
-  #  puts "#{hike.hike_info3}".yellow
-  #  puts "#{hike.hike_info4}".yellow
+    puts "Great Selection! ".blue + "#{hike.name}".yellow + " is an awesome hike! Here is the info:".blue
+    puts "#{hike.hike_info1}".yellow
+    puts "#{hike.hike_info2}".yellow
+    puts "#{hike.hike_info3}".yellow
+    puts "#{hike.hike_info4}".yellow
  end
 end
