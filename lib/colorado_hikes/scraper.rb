@@ -6,9 +6,29 @@ class ColoradoHikes::Scraper
   end
 
   def self.create_regions
-    scrape_main_page.each do |region|
-    ColoradoHikes::Region.new_from_page(region)
+    page = scrape_main_page
+    page.each do |region|
+      ColoradoHikes::Region.new_from_page(region)
     end
   end
 
-end
+  def self.scrape_hikes(selected_region)
+    doc ||= Nokogiri::HTML(open(selected_region.url))
+    doc.css("div.item-title").each do |h|
+      hike = ColoradoHikes::Hike.new
+        hike.url = h.css("a").attribute("href").value
+        hike.name = h.css("h3").text
+      selected_region.hikes << hike
+    end
+   end
+
+   def self.scrape_hike_info(selected_hike)
+     doc = Nokogiri::HTML(open(selected_hike.url))
+     selected_hike.info1 = doc.css("div.entry-content p[1]").text
+     selected_hike.info2 = doc.css("div.entry-content p[2]").text
+     selected_hike.info3 = doc.css("div.entry-content p[3]").text
+     selected_hike.info4 = doc.css("div.entry-content p[6]").text
+     selected_hike.info5 = doc.css("div.entry-content p[7]").text
+   end
+
+ end

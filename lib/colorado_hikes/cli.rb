@@ -12,11 +12,10 @@ class ColoradoHikes::CLI
     print_regions
     puts ""
     puts "Please select a region. Enter 1-6:".blue
-
     input = gets.strip.to_i
-
     if input.between?(1,6) == true
       selected_region = ColoradoHikes::Region.find(input)
+      ColoradoHikes::Scraper.scrape_hikes(selected_region) if selected_region.hikes == []
       print_region(selected_region)
       select_hike
     else
@@ -28,12 +27,11 @@ class ColoradoHikes::CLI
   def select_hike
     puts ""
     puts "Please select the hike you would like information on:".blue
-
     input = gets.strip.to_i
-
     if input.between?(1,12) == true
-      hike = ColoradoHikes::Hike.find(input)
-      print_hike_info(hike)
+      selected_hike = ColoradoHikes::Hike.find(input)
+      ColoradoHikes::Scraper.scrape_hike_info(selected_hike) if selected_hike.info1 == nil
+      print_hike_info(selected_hike)
       another_hike?
     else
       puts "I don't understand that answer. Please enter a hike number:".blue
@@ -44,9 +42,7 @@ class ColoradoHikes::CLI
   def another_hike?
     puts ""
     puts "Would you like to see information on another hike? Please enter Y or N.".blue
-
     input = gets.strip.downcase
-
     if input == "y"
     ColoradoHikes::Hike.all.clear #clears the other hikes that are listed from other regions (only list the selected regions' hikes)
       select_region
@@ -77,10 +73,11 @@ class ColoradoHikes::CLI
   def print_hike_info(hike)
     puts ""
     puts "Great Selection! ".blue + "#{hike.name}".yellow + " is an awesome hike! Here is the info:".blue
-    puts "#{hike.hike_info1}".yellow
-    puts "#{hike.hike_info2}".yellow
-    puts "#{hike.hike_info3}".yellow
-    puts "#{hike.hike_info4}".yellow
-  end
+    puts "#{hike.info1}".yellow
+    puts "#{hike.info2}".yellow
+    puts "#{hike.info3}".yellow
+    puts "#{hike.info4}".yellow
+    puts "#{hike.info5}".yellow
+end
 
 end
