@@ -23,4 +23,12 @@ class ColoradoHikes::Region
     self.all[id-1]
   end
 
+  def hikes
+    @hikes
+  end
+
+  def find_hike(id)
+    self.hikes[id-1]
+  end
+
 end
