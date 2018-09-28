@@ -1,14 +1,12 @@
 class ColoradoHikes::Scraper
 
-  def self.scrape_main_page #Class method. can be called on all of the objects in that class.
+  def self.scrape_regions
     doc = Nokogiri::HTML(open("http://thecohiker.com/loc/colorado-hiking-trails/"))
-    doc.css("div.categories-container ul li.has-title")
-  end
-
-  def self.create_regions
-    page = scrape_main_page
-    page.each do |region|
-      ColoradoHikes::Region.new_from_page(region)
+    page = doc.css("div.categories-container ul li.has-title")
+    page.each do |r|
+      region = ColoradoHikes::Region.new
+      region.name = r.css("span.cat-ttl").children.text
+      region.url = r.css("a").attribute("href").text
     end
   end
 

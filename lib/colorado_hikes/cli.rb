@@ -1,7 +1,7 @@
 class ColoradoHikes::CLI
 
   def call
-    ColoradoHikes::Scraper.create_regions
+    ColoradoHikes::Scraper.scrape_regions
     puts ""
     puts "WELCOME TO THE BEST HIKES IN COLORADO!".blue
     puts "The hikes are organized into the following 6 regions.".blue
@@ -19,7 +19,7 @@ class ColoradoHikes::CLI
       print_region(selected_region)
       select_hike(selected_region)
     else
-      puts "I don't understand that answer. Please enter a number between 1 and 6 for the corresponding region.".blue
+      puts "I don't understand that answer. Please enter a number between 1 and #{ColoradoHikes::Region.all.size} for the corresponding region.".blue
       select_region
     end
   end
@@ -34,8 +34,8 @@ class ColoradoHikes::CLI
       print_hike_info(selected_hike)
       another_hike?
     else
-      puts "I don't understand that answer. Please enter a hike number:".blue
-      select_hike
+      puts "I don't understand that answer. Please enter a hike number between 1 and #{selected_region.hikes.size}:".blue
+      select_hike(selected_region)
     end
   end
 
