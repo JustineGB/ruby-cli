@@ -7,11 +7,9 @@ Welcome to this Best Colorado Hikes Ruby Gem. This Gem will provide a list of th
 
 ## Usage
 
-Type the code below and follow on screen prompts.
+CD into the folder, bundle, and type ./bin/colorado-hikes.
 
-  $ colorado-hikes
-
-First, you will select the region for which you would like to see hikes on and then you will select the hike.
+Then, you will select the region for which you would like to see hikes on and then you will select the hike.
 
 ## Development
 
